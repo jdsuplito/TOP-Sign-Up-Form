@@ -35,3 +35,28 @@ socialMediaIcons.forEach((icon) => {
     iconImageEl.src = baseAssetPath + socialMediaIconImages[iconImageAlt].out;
   });
 });
+
+const passInputEl = document.getElementById('pass');
+const passConfirmInputEl = document.getElementById('conpass');
+
+const checkPass = () => {
+  const emptyPass = passInputEl.value === '';
+  const emptyConPass = passConfirmInputEl.value === '';
+  const doesPasswordMatch = passInputEl.value === passConfirmInputEl.value;
+  if (emptyPass){
+    passInputEl.style.borderColor = 'black';
+    passConfirmInputEl.style.borderColor = 'black';
+  } else if (emptyConPass) {
+    passConfirmInputEl.style.borderColor = 'black';
+  } else if (doesPasswordMatch) {
+    passInputEl.style.borderColor = 'green';
+    passConfirmInputEl.style.borderColor = 'green';
+  } else {
+    passConfirmInputEl.style.borderColor = 'red';
+    passInputEl.style.borderColor = 'red';
+  }
+};
+
+[passInputEl, passConfirmInputEl].forEach((passwordField) => {
+  passwordField.addEventListener('keyup', checkPass);
+});
